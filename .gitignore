@@ -1,0 +1,30 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Vite
+.vite/
+.env.local
+
+# IDE
+*.idea/
+*.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
