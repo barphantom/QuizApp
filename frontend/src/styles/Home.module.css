@@ -1,0 +1,19 @@
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+input {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  width: 80%;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}

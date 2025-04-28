@@ -1,0 +1,14 @@
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  background: #f0f0f0;
+}
+
+.loginButton {
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+}
