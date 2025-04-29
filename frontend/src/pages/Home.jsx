@@ -7,14 +7,13 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const code = e.target.code.value;
-    // Tutaj dodaj logikę weryfikacji kodu quizu
     console.log('Kod quizu:', code);
     // navigate(`/quiz/${code}`); // Przekierowanie po sprawdzeniu kodu
   };
 
   return (
     <div className={styles.container}>
-      <h1>Dołącz do quizu</h1>
+      <h2>Dołącz do quizu</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
