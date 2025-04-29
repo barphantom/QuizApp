@@ -9,15 +9,19 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        children: [
-            { index: true, element: <Home /> },
-            { path: 'login', element: <Login /> },
-            { path: 'register', element: <Register /> },
-        ],
-    },
+    // {
+    //     path: "/",
+    //     element: <App />,
+    //     children: [
+    //         { index: true, element: <Home /> },
+    //         { path: 'loginn', element: <Login /> },
+    //         { path: 'registerr', element: <Register /> },
+    //     ],
+    // },
+    {path: "/", element: <App />},
+    {path: "/login", element: <Login />},
+    {path: "/register", element: <Register />},
+    {path: "*", element: <NotFoundPage />},
 ]);
 
 // konfiguracja rutera
