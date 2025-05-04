@@ -4,22 +4,28 @@ import {useNavigate} from "react-router-dom";
 import {ACCESS_TOKEN, REFRESH_TOKEN} from "../constants.js";
 import styles from '../styles/Form.module.css'
 import LoadingIndicator from "./LoadingIndicator.jsx";
+import googleLogo from '../assets/google.png';
 
 
 export default function Form({ route, method }) {
+    const [email, setEmail] = useState("")
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
-    const name = method === "login" ? "Login" : "Register"
+    const name = method === "login" ? "Sign in" : "Sign up"
 
     const handleSubmit = async (e) => {
         setLoading(true)
         e.preventDefault()
 
+        const payload = method === "register"
+        ? { username: userName, password, email }
+        : { email, password };
+
         try {
-            const response = await api.post(route, { username: userName, password: password })
+            const response = await api.post(route, payload)
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, response.data.access)
                 localStorage.setItem(REFRESH_TOKEN, response.data.refresh)
@@ -36,17 +42,29 @@ export default function Form({ route, method }) {
     }
 
     return (
+        <div>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
             <h1>{name}</h1>
             <input
                 className={styles.formInput}
-                type="text"
-                value={userName}
+                type="email"
+                value={email}
                 onChange={(e) => {
-                    setUserName(e.target.value)
+                    setEmail(e.target.value)
                 }}
-                placeholder="Username"
+                placeholder="Email"
             />
+            { method === "register" && (
+                <input
+                    className={styles.formInput}
+                    type="text"
+                    value={userName}
+                    onChange={(e) => {
+                        setUserName(e.target.value)
+                    }}
+                    placeholder="Username"
+                />
+            )}
             <input
                 className={styles.formInput}
                 type="password"
@@ -56,9 +74,30 @@ export default function Form({ route, method }) {
                 }}
                 placeholder="Password"
             />
+            {method === "login" && (
+                <div className={styles.forgotPassword}>
+                    <a href="/reset-password">Forgot password?</a>
+                </div>
+            )}
+
             { loading && <LoadingIndicator /> }
             <button className={styles.formButton} type="submit">{name}</button>
+
+            { method === "login" && (
+                <>
+                <div className={styles.registerLink}>
+                    Don't have an account?&nbsp;&nbsp;<a href="/register">Sign Up</a>
+                </div>
+                </>
+            )}
+
+            <button type="button" className={styles.googleButton}
+            onClick={() => window.location.href = "http://localhost:8000/api/auth/google/"}>
+            <img src={googleLogo} alt="Sign in with Google" className={styles.googleIcon}/> </button>
+
+
         </form>
+        </div>
     )
 }
 

@@ -1,9 +1,12 @@
+body {
+  background-color: #009999;
+  color: #000000;
+}
+
 .formContainer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 50px auto;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -12,6 +15,7 @@
 
 .formInput {
   width: 90%;
+  align-self: center;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -19,10 +23,19 @@
   box-sizing: border-box;
 }
 
+.forgotPassword {
+  color: #007bff;
+  text-align: right;
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: -5px;
+}
+
 .formButton {
   width: 95%;
+  align-self: center;
   padding: 10px;
-  margin: 20px 0;
+  margin: 20px 0 8px 0;
   background-color: #007bff;
   color: white;
   border: none;
@@ -33,4 +46,29 @@
 
 .formButton:hover {
   background-color: #0056b3;
+}
+
+.registerLink {
+  color: #000000;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.googleButton {
+  width: 95%;
+  padding: 5px;
+  align-self: center;
+  margin-top: 20px;
+  background-color: #FFFFFF;
+  color: white;
+  border: gray 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.googleIcon {
+  width: 20px;
+  height: 20px;
 }

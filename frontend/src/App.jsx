@@ -2,6 +2,7 @@ import './App.css'
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import NotFoundPage from "./NotFoundPage.jsx";
 import Home2 from './pages/Home2';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
@@ -22,14 +23,16 @@ function App() {
   return (
     <BrowserRouter >
         <Routes>
-            <Route
+
+            {/* <Route
                 path="/"
                 element={
                 <ProtectedRoute>
                     <Home2 />
                 </ProtectedRoute>
                 }
-            />
+            /> */}
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<RegisterAndLogout />} />
