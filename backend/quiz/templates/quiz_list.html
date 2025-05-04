@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Quizów</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+    <h1 class="mb-4 text-center">Dostępne Quizy</h1>
+
+    {% if quizzes %}
+        <div class="list-group">
+            {% for quiz in quizzes %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ quiz.title }}</h5>
+                    {% if quiz.description %}
+                        <p class="mb-1">{{ quiz.description }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted text-center">Brak quizów do wyświetlenia.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
