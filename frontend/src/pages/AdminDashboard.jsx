@@ -2,8 +2,9 @@ import api from '../api.js'
 import { useState, useEffect } from "react";
 import Note from "../components/Notes.jsx";
 import "../styles/Home2.css"
+import Navbar from "../components/Navbar.jsx";
 
-export default function Home2() {
+export default function AdminDashboard() {
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
@@ -48,7 +49,7 @@ export default function Home2() {
 
     return (
         <div>
-            <div>
+            <Navbar />            <div>
                 <h2>Notes</h2>
                 {notes.map((note) => (
                     <Note note={note} onDelete={deleteNote} key={note.id} />
