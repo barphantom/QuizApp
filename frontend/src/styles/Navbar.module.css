@@ -13,7 +13,7 @@
 .logo{
   display: flex;
   align-items: center;
-  padding: 10px 20px 10px 100px;
+  padding: 10px 20px 10px 50px;
   width: auto;
   height: auto;
 }
@@ -23,7 +23,17 @@
   width: auto;
 }
 
-.plIcon{
-  padding: 10px 20px 0px 0px;
+.logoutBtn {
+  height: 40px;
+  align-self: center;
+  padding: 0.5rem 1.5rem;
+  margin-right: 50px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
+.logoutBtn:hover {
+  background: #eee;
+}
