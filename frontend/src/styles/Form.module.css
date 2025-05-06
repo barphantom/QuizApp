@@ -15,6 +15,7 @@ body {
 
 .formInput {
   width: 90%;
+  min-width: 280px;
   align-self: center;
   padding: 10px;
   margin: 10px 0;

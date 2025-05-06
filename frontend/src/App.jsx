@@ -32,7 +32,7 @@ function App() {
                 </ProtectedRoute>
                 }
             /> */}
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home2 />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<RegisterAndLogout />} />
