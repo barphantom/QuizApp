@@ -31,7 +31,7 @@ export default function Form({ route, method }) {
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, response.data.access)
                 localStorage.setItem(REFRESH_TOKEN, response.data.refresh)
-                navigate("/")
+                navigate("/dashboard")
             } else {
                 navigate("/login")
             }
@@ -111,6 +111,13 @@ export default function Form({ route, method }) {
                 <>
                 <div className={styles.registerLink}>
                     Don't have an account?&nbsp;&nbsp;<a href="/register">Sign Up</a>
+                </div>
+                </>
+            )}
+            { method === "register" && (
+                <>
+                <div className={styles.registerLink}>
+                    Have an account?&nbsp;&nbsp;<a href="/login">Log in</a>
                 </div>
                 </>
             )}
