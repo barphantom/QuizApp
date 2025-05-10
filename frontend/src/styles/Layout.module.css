@@ -1,4 +1,18 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     padding: 25px;
     background: #f0e1b9;
+}
+
+.contentArea {
+    display: flex;
+    flex: 1;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f8f8;
 }
