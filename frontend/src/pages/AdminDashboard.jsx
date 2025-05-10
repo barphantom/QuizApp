@@ -48,8 +48,7 @@ export default function AdminDashboard() {
     };
 
     return (
-        <div>
-            <Navbar />
+        <>
             <div>
                 <h2>Notes</h2>
                 {notes.map((note) => (
@@ -80,6 +79,6 @@ export default function AdminDashboard() {
                 <br />
                 <input type="submit" value="Submit"></input>
             </form>
-        </div>
+        </>
     );
 }
