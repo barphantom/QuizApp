@@ -4,8 +4,8 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # from .serializers import UserSerializer, NoteSerializer
-from .serializers import NoteSerializer, RegisterSerializer
-from .models import Note, CustomUser
+from .serializers import NoteSerializer, RegisterSerializer, QuizSerializer
+from .models import Note, CustomUser, Quiz
 
 
 # class NoteListCreate(generics.ListCreateAPIView):
@@ -60,6 +60,17 @@ class CreateUserView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
+
+
+class QuizListCreateView(generics.ListCreateAPIView):
+    serializer_class = QuizSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Quiz.objects.filter(author=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 
 # class CurrentUserView(APIView):
