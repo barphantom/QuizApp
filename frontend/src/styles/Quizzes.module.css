@@ -1,0 +1,45 @@
+.container {
+  padding: 2rem;
+}
+
+.header {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.quizList {
+  list-style: none;
+  padding: 0;
+}
+
+.quizItem {
+  background-color: #f5f5f5;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quizInfo h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.quizInfo p {
+  margin: 0.25rem 0;
+}
+
+.viewLink {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #007bff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.viewLink:hover {
+  background-color: #0056b3;
+}
