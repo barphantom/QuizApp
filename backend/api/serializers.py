@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import Note, CustomUser
+from .models import Note, CustomUser, Answer, Question, Quiz
 
 
 # class UserSerializer(serializers.ModelSerializer):
@@ -32,3 +32,36 @@ class NoteSerializer(serializers.ModelSerializer):
         model = Note
         fields = ["id", "title", "content", "created_at", "author"]
         extra_kwargs = {"author": {"read_only": True}}
+
+
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ["text", "is_correct"]
+
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True)
+
+    class Meta:
+        model = Question
+        fields = ["text", "answers"]
+
+
+class QuizSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True)
+
+    class Meta:
+        model = Quiz
+        fields = ["id", "title", "created_at", "questions"]
+        read_only_fields = ["id", "created_at"]
+
+    def create(self, validated_data):
+        questions_data = validated_data.pop("questions")
+        quiz = Quiz.objects.create(**validated_data)
+        for question_data in questions_data:
+            answers_data = question_data.pop("answers")
+            question = Question.objects.create(quiz=quiz, **question_data)
+            for answer_data in answers_data:
+                Answer.objects.create(question=question, **answer_data)
+        return quiz
