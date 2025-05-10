@@ -6,7 +6,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
+import Layout from "./components/Layout.jsx"
+import Quizzes from "./components/Quizzes.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -20,25 +21,48 @@ function RegisterAndLogout() {
 
 function App() {
 
-  return (
-    <BrowserRouter >
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/logout" element={<Logout />} />
-            <Route path="/register" element={<RegisterAndLogout />} />
-            <Route
-                path="/dashboard"
-                element={
-                    <ProtectedRoute>
-                        <AdminDashboard />
-                    </ProtectedRoute>
-                }
-            />
-            <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-    </BrowserRouter>
-  )
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/logout" element={<Logout/>}/>
+                <Route path="/register" element={<RegisterAndLogout/>}/>
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <AdminDashboard/>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/quizzes"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <Quizzes/>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/create-quiz"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <Quizzes/>      {/* tutaj trzeba dodać komponent: <CreateQuiz />*/}
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route path="*" element={<NotFoundPage/>}/>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App
