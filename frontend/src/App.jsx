@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Layout from "./components/Layout.jsx"
 import Quizzes from "./components/Quizzes.jsx";
+import QuizDetails from "./pages/QuizDetails.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -44,6 +45,16 @@ function App() {
                         <ProtectedRoute>
                             <Layout>
                                 <Quizzes/>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/quizzes/:quizId"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <QuizDetails/>
                             </Layout>
                         </ProtectedRoute>
                     }
