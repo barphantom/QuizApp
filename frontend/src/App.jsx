@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import Layout from "./components/Layout.jsx"
 import Quizzes from "./components/Quizzes.jsx";
 import QuizDetails from "./pages/QuizDetails.jsx";
+import CreateQuiz from "./pages/CreateQuiz.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -65,7 +66,7 @@ function App() {
                     element={
                         <ProtectedRoute>
                             <Layout>
-                                <Quizzes/>      {/* tutaj trzeba dodać komponent: <CreateQuiz />*/}
+                                <CreateQuiz/>      {/* tutaj trzeba dodać komponent: <CreateQuiz />*/}
                             </Layout>
                         </ProtectedRoute>
                     }
