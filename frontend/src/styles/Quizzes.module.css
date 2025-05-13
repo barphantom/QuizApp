@@ -43,3 +43,18 @@
 .viewLink:hover {
   background-color: #0056b3;
 }
+
+.deleteButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.4em 0.8em;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.editLink {
+    margin-left: 0.5em;
+    color: #007bff;
+    text-decoration: underline;
+}
