@@ -10,6 +10,7 @@ import Layout from "./components/Layout.jsx"
 import Quizzes from "./components/Quizzes.jsx";
 import QuizDetails from "./pages/QuizDetails.jsx";
 import CreateQuiz from "./pages/CreateQuiz.jsx";
+import EditQuiz from "./pages/EditQuiz.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -60,13 +61,22 @@ function App() {
                         </ProtectedRoute>
                     }
                 />
-
                 <Route
                     path="/create-quiz"
                     element={
                         <ProtectedRoute>
                             <Layout>
-                                <CreateQuiz/>      {/* tutaj trzeba dodać komponent: <CreateQuiz />*/}
+                                <CreateQuiz/>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/quizzes/edit/:quizId"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <EditQuiz/>
                             </Layout>
                         </ProtectedRoute>
                     }
