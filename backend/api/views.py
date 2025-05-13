@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 # from .serializers import UserSerializer, NoteSerializer
@@ -71,6 +72,26 @@ class QuizListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+
+class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = QuizSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Quiz.objects.filter(author=self.request.user)
+
+    def get_object(self):
+        quiz = super().get_object()
+        if quiz.author != self.request.user:
+            raise PermissionDenied("Nie masz dostępu do tego quizu.")
+        return quiz
+
+    def perform_update(self, serializer):
+        serializer.save(author=self.request.user)
+
+    def perform_destroy(self, instance):
+        instance.delete()
 
 
 # class CurrentUserView(APIView):
