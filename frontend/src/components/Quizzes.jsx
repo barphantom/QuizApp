@@ -24,6 +24,20 @@ export default function Quizzes() {
         }
     }
 
+    const deleteQuiz = async (quizId) => {
+        const confirmDelete = window.confirm("Czy na pewno chcesz usunąć ten quiz?")
+        if (!confirmDelete) return;
+
+        try {
+            await api.delete(`/api/quizzes/${quizId}/`)
+            setQuizzes((prev) => prev.filter((quiz) => quiz.id !== quizId))
+        } catch (error) {
+            alert("Błąd podczas usuwania quizu")
+            console.log(error)
+        }
+    }
+
+
     if (loading) {
         return <p>Ładowanie quizów</p>
     }
@@ -44,6 +58,14 @@ export default function Quizzes() {
                             <p>Liczba pytań: {quiz.questions.length}</p>
                         </div>
                         <Link to={`/quizzes/${quiz.id}`} className={styles.viewLink}>Szczegóły quizu</Link>
+                        <Link to={`/quizzes/edit/${quiz.id}`} className={styles.editLink}>Edytuj</Link>
+                        <button
+                            onClick={() => deleteQuiz(quiz.id)}
+                            className={styles.deleteButton}
+                        >
+                            Usuń
+                        </button>
+
                     </li>
                 ))}
             </ul>
