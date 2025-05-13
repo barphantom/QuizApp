@@ -11,61 +11,7 @@ export default function QuizDetails() {
     const { quizId } = useParams()
 
     useEffect(() => {
-        // fetchQuiz()
-        // Tylo do testów, gdy nie ma endpoint'u w backendzie
-        setQuiz(
-{
-        "id": 1,
-        "title": "Quiz o Django",
-        "created_at": "2025-05-10T18:29:30.050533Z",
-        "questions": [
-            {
-                "text": "Czym jest Django?",
-                "answers": [
-                    {
-                        "text": "Framework JavaScript",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Framework Python",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Baza danych",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "System operacyjny",
-                        "is_correct": false
-                    }
-                ]
-            },
-            {
-                "text": "Który model odpowiada za użytkownika?",
-                "answers": [
-                    {
-                        "text": "User",
-                        "is_correct": true
-                    },
-                    {
-                        "text": "Account",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Client",
-                        "is_correct": false
-                    },
-                    {
-                        "text": "Admin",
-                        "is_correct": false
-                    }
-                ]
-            }
-        ]
-    }
-        )
-    setLoading(false)
-    // ^ Do tąd usunąć, gdy /quizzes/$id zostanie stworzone
+        fetchQuiz()
     }, []);
 
     const fetchQuiz = () => {
