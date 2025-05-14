@@ -51,6 +51,7 @@ class Quiz(models.Model):
     title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='quizzes')
+    code = models.CharField(max_length=6, unique=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -71,3 +72,20 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class QuizResult(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, related_name="results")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    score = models.IntegerField()
+    total = models.IntegerField()
+
+    def __str__(self):
+        return f"Result for {self.quiz.title} by {self.user or 'anonymous'}"
+
+
+class AnswerSubmission(models.Model):
+    result = models.ForeignKey(QuizResult, on_delete=models.CASCADE, related_name="answers")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    selected_answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
