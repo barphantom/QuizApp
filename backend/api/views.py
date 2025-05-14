@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 # from .serializers import UserSerializer, NoteSerializer
-from .serializers import NoteSerializer, RegisterSerializer, QuizSerializer
-from .models import Note, CustomUser, Quiz
+from .serializers import NoteSerializer, RegisterSerializer, QuizSerializer, PublicQuizSerializer, QuizResultSerializer
+from .models import Note, CustomUser, Quiz, QuizResult
 
 
 # class NoteListCreate(generics.ListCreateAPIView):
@@ -94,9 +96,18 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
         instance.delete()
 
 
-# class CurrentUserView(APIView):
-#     permission_classes = [IsAuthenticated]
-#
-#     def get(self, request):
-#         serializer = UserSerializer(request.user)
-#         return Response(serializer.data)
+class JoinQuizView(APIView):
+    def get(self, request, code):
+        try:
+            quiz = Quiz.objects.get(code=code)
+        except Quiz.DoesNotExist:
+            return Response({"detail": "Quiz not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PublicQuizSerializer(quiz)
+        return Response(serializer.data)
+
+
+class SubmitQuizResultView(generics.CreateAPIView):
+    serializer_class = QuizResultSerializer
+    permission_classes = [AllowAny]
+
