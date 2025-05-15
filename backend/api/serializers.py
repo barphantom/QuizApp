@@ -116,7 +116,7 @@ class PublicQuizSerializer(serializers.ModelSerializer):
 
 
 class AnswerSubmissionSerializer(serializers.ModelSerializer):
-    question = serializers.PrimaryKeyRelatedField(queryset=Quiz.objects.all())
+    question = serializers.PrimaryKeyRelatedField(queryset=Question.objects.all())
     selected_answer = serializers.PrimaryKeyRelatedField(queryset=Answer.objects.all())
 
     class Meta:

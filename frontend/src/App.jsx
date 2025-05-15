@@ -11,6 +11,7 @@ import Quizzes from "./components/Quizzes.jsx";
 import QuizDetails from "./pages/QuizDetails.jsx";
 import CreateQuiz from "./pages/CreateQuiz.jsx";
 import EditQuiz from "./pages/EditQuiz.jsx";
+import FillOutQuiz from "./pages/FillOutQuiz.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/logout" element={<Logout/>}/>
                 <Route path="/register" element={<RegisterAndLogout/>}/>
+                <Route path="/fill-out-quiz/:code" element={<FillOutQuiz/>}/>
                 <Route
                     path="/dashboard"
                     element={

@@ -1,3 +1,4 @@
+from django.db.models.expressions import result
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics, status
@@ -97,6 +98,8 @@ class QuizDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class JoinQuizView(APIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, code):
         try:
             quiz = Quiz.objects.get(code=code)
@@ -110,4 +113,16 @@ class JoinQuizView(APIView):
 class SubmitQuizResultView(generics.CreateAPIView):
     serializer_class = QuizResultSerializer
     permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        result = serializer.save()
+
+        score = result.score
+        total = result.total
+
+        headers = self.get_success_headers(serializer.data)
+        return Response({"score": score, "total": total}, status=status.HTTP_201_CREATED, headers=headers)
 
