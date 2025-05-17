@@ -62,7 +62,7 @@ class QuizSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quiz
-        fields = ["id", "title", "created_at", "questions"]
+        fields = ["id", "title", "created_at", "code", "questions"]
         read_only_fields = ["id", "created_at"]
 
     def create(self, validated_data):
@@ -155,3 +155,18 @@ class QuizResultSerializer(serializers.ModelSerializer):
         result.save()
 
         return result
+
+
+class QuestionStatsSerializer(serializers.Serializer):
+    question_id = serializers.IntegerField()
+    question_text = serializers.CharField()
+    total_answers = serializers.IntegerField()
+    correct_answers = serializers.IntegerField()
+    correct_percentage = serializers.FloatField()
+
+
+class QuizStatsSerializer(serializers.Serializer):
+    quiz_id = serializers.IntegerField()
+    quiz_title = serializers.CharField()
+    total_participants = serializers.IntegerField()
+    questions = QuestionStatsSerializer(many=True)
