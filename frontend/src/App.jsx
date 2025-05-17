@@ -12,6 +12,7 @@ import QuizDetails from "./pages/QuizDetails.jsx";
 import CreateQuiz from "./pages/CreateQuiz.jsx";
 import EditQuiz from "./pages/EditQuiz.jsx";
 import FillOutQuiz from "./pages/FillOutQuiz.jsx";
+import QuizResults from "./pages/QuizResults.jsx";
 
 function Logout() {
     localStorage.clear()
@@ -79,6 +80,16 @@ function App() {
                         <ProtectedRoute>
                             <Layout>
                                 <EditQuiz/>
+                            </Layout>
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/quizzes/results/:quizId"
+                    element={
+                        <ProtectedRoute>
+                            <Layout>
+                                <QuizResults/>
                             </Layout>
                         </ProtectedRoute>
                     }
