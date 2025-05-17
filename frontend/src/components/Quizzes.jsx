@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import api from "../api.js";
 import styles from "../styles/Quizzes.module.css"
 
@@ -7,6 +7,8 @@ import styles from "../styles/Quizzes.module.css"
 export default function Quizzes() {
     const [quizzes, setQuizzes] = useState([])
     const [loading, setLoading] = useState(true)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getQuizzes()
@@ -37,7 +39,6 @@ export default function Quizzes() {
         }
     }
 
-
     if (loading) {
         return <p>Ładowanie quizów</p>
     }
@@ -56,6 +57,7 @@ export default function Quizzes() {
                             <h2>{quiz.title}</h2>
                             <p>{quiz.created_at}</p>
                             <p>Liczba pytań: {quiz.questions.length}</p>
+                            <p>Kod dołączenia: {quiz.code}</p>
                         </div>
                         <Link to={`/quizzes/${quiz.id}`} className={styles.viewLink}>Szczegóły quizu</Link>
                         <Link to={`/quizzes/edit/${quiz.id}`} className={styles.editLink}>Edytuj</Link>
@@ -65,7 +67,7 @@ export default function Quizzes() {
                         >
                             Usuń
                         </button>
-
+                        <button onClick={() => navigate(`/quizzes/results/${quiz.id}`)}>Wyniki</button>
                     </li>
                 ))}
             </ul>
