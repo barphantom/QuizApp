@@ -1,5 +1,5 @@
 from django.db.models.expressions import result
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from rest_framework import generics, status
 from rest_framework.exceptions import PermissionDenied
@@ -8,8 +8,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 # from .serializers import UserSerializer, NoteSerializer
-from .serializers import NoteSerializer, RegisterSerializer, QuizSerializer, PublicQuizSerializer, QuizResultSerializer
-from .models import Note, CustomUser, Quiz, QuizResult
+from .serializers import NoteSerializer, RegisterSerializer, QuizSerializer, PublicQuizSerializer, QuizResultSerializer, \
+    QuizStatsSerializer
+from .models import Note, CustomUser, Quiz, QuizResult, AnswerSubmission
 
 
 # class NoteListCreate(generics.ListCreateAPIView):
@@ -126,3 +127,37 @@ class SubmitQuizResultView(generics.CreateAPIView):
         headers = self.get_success_headers(serializer.data)
         return Response({"score": score, "total": total}, status=status.HTTP_201_CREATED, headers=headers)
 
+
+class QuizStatsView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, quiz_id):
+        quiz = get_object_or_404(Quiz, id=quiz_id, author=request.user)
+
+        total_participants = QuizResult.objects.filter(quiz=quiz).count()
+        question_stats = []
+
+        for question in quiz.questions.all():
+            submissions = AnswerSubmission.objects.filter(question=question)
+            total_answers = submissions.count()
+            correct_answers = submissions.filter(selected_answer__is_correct=True).count()
+            correct_percentage = (correct_answers / total_answers) * 100 if total_answers > 0 else 0.0
+
+            question_stats.append({
+                "question_id": question.id,
+                "question_text": question.text,
+                "total_answers": total_answers,
+                "correct_answers": correct_answers,
+                "correct_percentage": round(correct_percentage, 2),
+            })
+            print("DEBUG:", question_stats)
+
+        quiz_stats = QuizStatsSerializer({
+            "quiz_id": quiz.id,
+            "quiz_title": quiz.title,
+            "total_participants": total_participants,
+            "questions": question_stats,
+        })
+        print("DEBUG:", question_stats)
+
+        return Response(quiz_stats.data)
