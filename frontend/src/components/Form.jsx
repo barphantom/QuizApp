@@ -31,7 +31,7 @@ export default function Form({ route, method }) {
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, response.data.access)
                 localStorage.setItem(REFRESH_TOKEN, response.data.refresh)
-                navigate("/dashboard")
+                navigate("/quizzes")
             } else {
                 navigate("/login")
             }
