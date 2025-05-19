@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import api from "../api.js";
 import {useNavigate, useParams} from "react-router-dom";
+import styles from "../styles/CreateQuiz.module.css"
 
 
 export default function EditQuiz() {
@@ -121,36 +122,39 @@ export default function EditQuiz() {
     }
 
     return (
-        <>
-            <h2>Edytuj quiz</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="quiz-title">Tytuł quizu: </label>
+        <div className={styles.container}>
+            <h2 className={styles.title}>Edytuj quiz</h2>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <label className={styles.label} htmlFor="quiz-title">Tytuł quizu: </label>
                 <input
                     type="text"
                     id="quiz-title"
+                    className={styles.textInput}
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                     required
                 />
-                <hr />
+                <hr className={styles.divider} />
                 {questions.map((q, qIndex) => (
-                    <div key={qIndex}>
-                        <h3>Pytanie {qIndex + 1}</h3>
-                        <button type="button" onClick={() => removeQuestion(qIndex)}>Usuń pytanie</button>
+                    <div key={qIndex} className={styles.questionBlock}>
+                        <h3 className={styles.questionTitle}>Pytanie {qIndex + 1}</h3>
+                        <button type="button" className={styles.removeQuestionBtn} onClick={() => removeQuestion(qIndex)}>Usuń pytanie</button>
                         <input
                             type="text"
+                            className={styles.textInput}
                             value={q.text}
                             onChange={(e) =>
                                 handleQuestionChange(qIndex, "text", e.target.value)}
                             placeholder="Treść pytania"
                             required
                         />
-                        <ul>
+                        <ul className={styles.answersList}>
                             {q.answers.map((a, aIndex) => (
-                                <li key={aIndex}>
-                                    <label htmlFor={`answer-${qIndex}-${aIndex}`}>Odpowiedź {aIndex + 1}</label>
+                                <li key={aIndex} className={styles.answerItem}>
+                                    <label className={styles.answerLabel} htmlFor={`answer-${qIndex}-${aIndex}`}>Odpowiedź {aIndex + 1}</label>
                                     <input
                                         type="text"
+                                        className={styles.answerInput}
                                         id={`answer-${qIndex}-${aIndex}`}
                                         value={a.text}
                                         onChange={(e) =>
@@ -158,7 +162,7 @@ export default function EditQuiz() {
                                         placeholder={`Odpowiedź ${aIndex + 1}`}
                                         required
                                     />
-                                    <label>
+                                    <label className={styles.correctAnswerLabel}>
                                         <input
                                             type="radio"
                                             name={`correct-${qIndex}`}
@@ -173,10 +177,12 @@ export default function EditQuiz() {
                         </ul>
                     </div>
                 ))}
-                <button type="button" onClick={addQuestion}>Dodaj pytanie</button>
-                <br/>
-                <button type="submit">Zapisz zmiany</button>
+                <div className={styles.actionButtons}>
+                    <button type="button" className={styles.addQuestionBtn} onClick={addQuestion}>Dodaj pytanie</button>
+                    <br/>
+                    <button type="submit" className={styles.submitQuizBtn}>Zapisz zmiany</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
