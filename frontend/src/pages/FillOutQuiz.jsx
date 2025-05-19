@@ -1,6 +1,8 @@
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../api";
+import styles from "../styles/FillOutQuiz.module.css"
+
 
 export default function FillOutQuiz() {
   const { code } = useParams();
@@ -63,33 +65,32 @@ export default function FillOutQuiz() {
   if (!quiz) return <div>Ładowanie quizu...</div>;
 
   return (
-    <div>
-      <h2>Quiz: {quiz.title}</h2>
-      <form onSubmit={handleSubmit}>
-        {quiz.questions.map((question, index) => (
-          <div key={question.id}>
-            <p>{index + 1}. {question.text}</p>
-            {question.answers.map((answer) => (
-              <div key={answer.id}>
-                <label>
-                  <input
-                    type="radio"
-                    name={`question-${question.id}`}
-                    value={answer.id}
-                    checked={answers[question.id] === answer.id}
-                    onChange={() => handleAnswerChange(question.id, answer.id)}
-                    required
-                  />
-                  {answer.text}
-                </label>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Quiz: {quiz.title}</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          {quiz.questions.map((question, index) => (
+              <div key={question.id} className={styles.questionBlock}>
+                <p className={styles.questionText}>{index + 1}. {question.text}</p>
+                {question.answers.map((answer) => (
+                    <label key={answer.id} className={styles.answerOption}>
+                      <input
+                          type="radio"
+                          name={`question-${question.id}`}
+                          value={answer.id}
+                          checked={answers[question.id] === answer.id}
+                          onChange={() => handleAnswerChange(question.id, answer.id)}
+                          required
+                      />
+                      <span className={styles.answerLabel}>{answer.text}</span>
+                    </label>
+                ))}
               </div>
-            ))}
-          </div>
-        ))}
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Wysyłanie..." : "Wyślij odpowiedzi"}
-        </button>
-      </form>
-    </div>
+          ))}
+          <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
+            {isSubmitting ? "Wysyłanie..." : "Wyślij odpowiedzi"}
+          </button>
+        </form>
+      </div>
+
   );
 }
