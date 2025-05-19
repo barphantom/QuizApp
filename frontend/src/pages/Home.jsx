@@ -37,8 +37,8 @@ export default function Home() {
                 <button onClick={() => navigate("/register")}>Sign up</button>
               </div>
           </nav>
-        <h2>Wpisz kod aby dołączyć do quizu</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className={styles.mainText}>Wpisz kod aby dołączyć do quizu:</h2>
+        <form className={styles.codeForm} onSubmit={handleSubmit}>
             <input type="text"
                    name="kod"
                    value={code}
