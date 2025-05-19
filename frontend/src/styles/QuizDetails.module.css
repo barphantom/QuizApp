@@ -1,0 +1,75 @@
+/* QuizDetails.module.css */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.creationDate {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.questionsList {
+    list-style: none;
+    padding: 0;
+}
+
+.questionItem {
+    background-color: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.questionText {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.answersList {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.answerItem {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid #3498db;
+    border-radius: 4px;
+}
+
+.loading {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+    padding: 2rem;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+
+.noData {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
