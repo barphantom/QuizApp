@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,34 +6,42 @@
   height: 70px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #ccffff;
-  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  z-index: 1000;
+  padding: 0 2rem;
 }
 
-.logo{
+.logo {
+  height: 40px;
+}
+
+.logoLink {
   display: flex;
   align-items: center;
-  padding: 10px 20px 10px 50px;
-  width: auto;
-  height: auto;
 }
 
-.logoLink{
+.buttonDiv {
   display: flex;
-  width: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .logoutBtn {
-  height: 40px;
-  align-self: center;
-  padding: 0.5rem 1.5rem;
-  margin-right: 50px;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  height: 36px;
+  padding: 0.5rem 1rem;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
 .logoutBtn:hover {
-  background: #eee;
+  background: #005fa3;
 }
+
