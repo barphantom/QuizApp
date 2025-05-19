@@ -44,65 +44,70 @@ export default function Form({ route, method }) {
     }
 
     return (
-        <div>
+        <>
         <form onSubmit={handleSubmit} className={styles.formContainer}>
             <h1>{name}</h1>
-            <input
-                className={styles.formInput}
-                type="email"
-                value={email}
-                onChange={(e) => {
-                    setEmail(e.target.value)
-                }}
-                placeholder="Email"
-            />
-            { method === "register" && (
-                <div>
-                    <input      /* nickname */
-                        className={styles.formInput}
-                        type="text"
-                        value={nickName}
-                        onChange={(e) => {
-                            setNickName(e.target.value)
-                        }}
-                        placeholder="Username"
-                    />
-                    <input      /* first_name */
-                        className={styles.formInput}
-                        type="text"
-                        value={firstName}
-                        onChange={e => {
-                            setFirstName(e.target.value)
-                        }}
-                        placeholder="First name"
-                    />
-                    <input      /* last_name */
-                        className={styles.formInput}
-                        type="text"
-                        value={lastName}
-                        onChange={e => {
-                            setLastName(e.target.value)
-                        }}
-                        placeholder="Last name"
-                    />
-                </div>
-            )}
-            <input
-                className={styles.formInput}
-                type="password"
-                value={password}
-                onChange={(e) => {
-                    setPassword(e.target.value)
-                }}
-                placeholder="Password"
-            />
+            <div className={styles.inputs}>
+                <input
+                    className={styles.formInput}
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                    }}
+                    placeholder="Email"
+                />
+                { method === "register" && (
+                    <>
+                        <input      /* nickname */
+                            className={styles.formInput}
+                            type="text"
+                            value={nickName}
+                            onChange={(e) => {
+                                setNickName(e.target.value)
+                            }}
+                            placeholder="Username"
+                        />
+                        <input      /* first_name */
+                            className={styles.formInput}
+                            type="text"
+                            value={firstName}
+                            onChange={e => {
+                                setFirstName(e.target.value)
+                            }}
+                            placeholder="First name"
+                        />
+                        <input      /* last_name */
+                            className={styles.formInput}
+                            type="text"
+                            value={lastName}
+                            onChange={e => {
+                                setLastName(e.target.value)
+                            }}
+                            placeholder="Last name"
+                        />
+                    </>
+                )}
+                <input
+                    className={styles.formInput}
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                    }}
+                    placeholder="Password"
+                />
+            </div>
+
             {method === "login" && (
                 <div className={styles.forgotPassword}>
                     <a href="/reset-password">Forgot password?</a>
                 </div>
             )}
 
-            { loading && <LoadingIndicator /> }
+            <div className={styles.loadingDiv}>
+                { loading && <LoadingIndicator /> }
+            </div>
 
             {/*Action button*/}
             <button className={styles.formButton} type="submit">{name}</button>
@@ -127,7 +132,7 @@ export default function Form({ route, method }) {
             <img src={googleLogo} alt="Sign in with Google" className={styles.googleIcon}/> </button>
 
         </form>
-        </div>
+        </>
     )
 }
 
