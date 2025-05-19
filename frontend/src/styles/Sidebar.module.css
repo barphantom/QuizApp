@@ -1,24 +1,44 @@
+/* Sidebar.module.css */
 .sidebar {
-    width: 200px;
-    background-color: #222;
-    color: #fff;
-    padding: 20px;
+  width: 220px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ddd;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 70px;
+  align-self: flex-start; /* Zapobiega rozciąganiu */
+  height: calc(100vh - 70px); /* Zachowujemy ale dodajemy overflow */
+  overflow-y: auto; /* Scroll wewnątrz sidebara jeśli potrzeba */
 }
 
+/* Reszta stylów pozostaje bez zmian */
 .navList {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .navList li {
-    margin: 10px 0;
+  margin-bottom: 1rem;
 }
 
 .navList a {
-    color: white;
-    text-decoration: none;
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #333;
+  text-decoration: none;
+  border: solid 1px #ddd;
+  background-color: #e9e9e9;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition:
+          background-color 0.2s,
+          color 0.2s,
+          transform 0.2s ease;
 }
 
 .navList a:hover {
-    text-decoration: underline;
+  background-color: #aaa;
+  color: #000;
+  transform: translateX(5px);
 }
