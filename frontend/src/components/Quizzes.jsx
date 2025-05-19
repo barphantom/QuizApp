@@ -55,19 +55,31 @@ export default function Quizzes() {
                     <li key={quiz.id} className={styles.quizItem}>
                         <div className={styles.quizInfo}>
                             <h2>{quiz.title}</h2>
-                            <p>{quiz.created_at}</p>
+                            <p>{new Date(quiz.created_at).toLocaleString("pl-Pl", {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            })}</p>
                             <p>Liczba pytań: {quiz.questions.length}</p>
                             <p>Kod dołączenia: {quiz.code}</p>
                         </div>
-                        <Link to={`/quizzes/${quiz.id}`} className={styles.viewLink}>Szczegóły quizu</Link>
-                        <Link to={`/quizzes/edit/${quiz.id}`} className={styles.editLink}>Edytuj</Link>
-                        <button
-                            onClick={() => deleteQuiz(quiz.id)}
-                            className={styles.deleteButton}
-                        >
-                            Usuń
-                        </button>
-                        <button onClick={() => navigate(`/quizzes/results/${quiz.id}`)}>Wyniki</button>
+
+                        <div className={styles.buttonGroup}>
+                            <button onClick={() => navigate(`/quizzes/${quiz.id}`)}
+                                    className={styles.quizButton}>Szczegóły
+                            </button>
+                            <button onClick={() => navigate(`/quizzes/edit/${quiz.id}`)}
+                                    className={styles.quizButton}>Edytuj
+                            </button>
+                            <button onClick={() => deleteQuiz(quiz.id)}
+                                    className={`${styles.quizButton} ${styles.deleteButton}`}>Usuń
+                            </button>
+                            <button onClick={() => navigate(`/quizzes/results/${quiz.id}`)}
+                                    className={styles.quizButton}>Wyniki
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
