@@ -27,6 +27,7 @@
 }
 
 .mainText {
+  text-align: center;
   font-size: 36px;
   font-weight: bold;
   margin: 1rem;
@@ -34,6 +35,7 @@
 
 .codeForm {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
@@ -60,4 +62,22 @@
 
 .codeForm input:focus {
   border-bottom-color: #000;
+  color: #000;
+}
+
+.joinButton {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  padding: .75rem 1.75rem;
+  font-size: 1.5rem;
+  background-color: #00cccc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.joinButton:hover {
+  background-color: #009999;
 }

@@ -45,6 +45,7 @@ export default function Home() {
                    onChange={(e) => setCode(e.target.value)}
                    placeholder="kod quizu"
                    required/>
+            <button type="submit" className={styles.joinButton}>Dołącz</button>
         </form>
     </div>
   );
