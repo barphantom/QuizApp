@@ -24,16 +24,18 @@ function RegisterAndLogout() {
     return <Register />
 }
 
+
+
 function App() {
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/" element={<Layout withSidebar={false}><Home/></Layout>}/>
+                <Route path="/login" element={<Layout withSidebar={false}><Login/></Layout>}/>
+                <Route path="/register" element={<Layout withSidebar={false}><Register/></Layout>}/>
+                <Route path="/fill-out-quiz/:code" element={<Layout withSidebar={false}><FillOutQuiz/></Layout>}/>
                 <Route path="/logout" element={<Logout/>}/>
-                <Route path="/register" element={<RegisterAndLogout/>}/>
-                <Route path="/fill-out-quiz/:code" element={<FillOutQuiz/>}/>
                 <Route
                     path="/dashboard"
                     element={

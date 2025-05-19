@@ -25,3 +25,39 @@
   padding: 0 20px;
   
 }
+
+.mainText {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.codeForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.codeForm input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0;
+  font-size: 2rem;
+  color: #eee;
+  width: 400px;
+  outline: none;
+  transition: border-bottom-color 0.3s ease;
+}
+
+.codeForm input::placeholder {
+  color: #aaa;
+}
+
+.codeForm input:focus {
+  border-bottom-color: #000;
+}

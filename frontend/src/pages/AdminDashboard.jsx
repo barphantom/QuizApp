@@ -1,8 +1,8 @@
 import api from '../api.js'
 import { useState, useEffect } from "react";
 import Note from "../components/Notes.jsx";
-import "../styles/Home2.css"
-import Navbar from "../components/Navbar.jsx";
+// import "../styles/Home2.css"
+
 
 export default function AdminDashboard() {
     const [notes, setNotes] = useState([]);
